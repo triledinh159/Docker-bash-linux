@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Add Docker repository
+sudo dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+
+# Install Docker and related packages
+sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# Enable and start Docker service
+sudo systemctl --now enable docker
+
+# Add the current user to the Docker group
+sudo usermod -aG docker $(whoami)
+
+echo "Done"
