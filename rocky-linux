@@ -12,4 +12,16 @@ sudo systemctl --now enable docker
 # Add the current user to the Docker group
 sudo usermod -aG docker $(whoami)
 
-echo "Done"
+# Define aliases in ~/.bashrc
+echo "Adding Docker aliases to ~/.bashrc..."
+cat <<EOF >> ~/.bashrc
+
+# Docker aliases
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias d='docker'
+alias dlogs='docker logs -f'
+EOF
+
+echo "Docker installation completed. You may need to log out and log back in for group changes to take effect."
+echo "Run 'source ~/.bashrc' to apply the new aliases immediately."
